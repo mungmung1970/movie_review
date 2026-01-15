@@ -1,5 +1,5 @@
 import "./ReviewList.css";
-import { Review } from "../types/review";
+import type { Review } from "../types/review";
 
 export default function ReviewList({ reviews }: { reviews: Review[] }) {
   return (
