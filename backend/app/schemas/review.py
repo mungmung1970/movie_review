@@ -11,8 +11,10 @@ class ReviewBase(BaseModel):
     content: str
 
 
-class ReviewCreate(ReviewBase):
-    pass
+class ReviewCreate(BaseModel):
+    movie_id: int
+    author: str
+    content: str
 
 
 class ReviewResponse(BaseModel):
@@ -21,9 +23,9 @@ class ReviewResponse(BaseModel):
     author: str
     content: str
 
-    sentiment_score: int  # NOT NULL
-    sentiment_source: str  # NOT NULL
+    sentiment_score: int
+    sentiment_source: str
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    # ⭐⭐⭐ Pydantic v2 핵심
+    model_config = {"from_attributes": True}
