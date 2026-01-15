@@ -45,15 +45,3 @@ def delete_movie(movie_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Movie deleted"}
 
-
-@router.post("/", response_model=MovieResponse)
-def create_movie(movie: MovieCreate, db: Session = Depends(get_db)):
-    try:
-        db_movie = Movie(**movie.dict())
-        db.add(db_movie)
-        db.commit()
-        db.refresh(db_movie)
-        return db_movie
-    except Exception as e:
-        print("🔥 DB ERROR:", e)
-        raise

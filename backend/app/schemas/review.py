@@ -2,6 +2,7 @@
 
 from pydantic import BaseModel, Field
 from datetime import datetime
+from typing import Optional
 
 
 class ReviewBase(BaseModel):
@@ -14,10 +15,14 @@ class ReviewCreate(ReviewBase):
     pass
 
 
-class ReviewResponse(ReviewBase):
+class ReviewResponse(BaseModel):
     id: int
-    sentiment_score: int = Field(..., ge=1, le=5)
-    sentiment_source: str
+    movie_id: int
+    author: str
+    content: str
+
+    sentiment_score: int  # NOT NULL
+    sentiment_source: str  # NOT NULL
     created_at: datetime
 
     class Config:
