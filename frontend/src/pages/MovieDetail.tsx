@@ -11,49 +11,39 @@
 //==============================================
 
 // src/pages/MovieDetail.tsx
-
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import { getMovie } from "../api/movieApi";
+import { getReviewsByMovie } from "../api/reviewApi";
 import type { Movie } from "../types/movie";
-
-import MovieCard from "../components/MovieCard";
+import type { Review } from "../types/review";
 import ReviewList from "../components/ReviewList";
 import ReviewForm from "../components/ReviewForm";
 
 export default function MovieDetail() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const { id } = useParams();
+  const movieId = Number(id);
 
   const [movie, setMovie] = useState<Movie | null>(null);
-  const [reloadKey, setReloadKey] = useState(0);
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  const loadReviews = async () => {
+    setReviews(await getReviewsByMovie(movieId));
+  };
 
   useEffect(() => {
-    if (id) {
-      getMovie(Number(id)).then(setMovie);
-    }
-  }, [id]);
-
-  if (!movie) {
-    return <p>로딩 중...</p>;
-  }
+    loadReviews();
+  }, [movieId]);
 
   return (
     <div>
-      <button onClick={() => navigate("/")}>← 목록</button>
+      {movie && <h2>{movie.title}</h2>}
 
-      <MovieCard movie={movie} />
+      <ReviewList reviews={reviews} />
 
       <ReviewForm
-        movieId={movie.id}
-        onSuccess={() => setReloadKey((k) => k + 1)}
-      />
-
-      {/* key를 이용해 리뷰 새로고침 */}
-      <ReviewList
-        key={reloadKey}
-        movieId={movie.id}
+        movieId={movieId}
+        onCreated={loadReviews}
       />
     </div>
   );
