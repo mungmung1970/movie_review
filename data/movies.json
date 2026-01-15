@@ -1,0 +1,73 @@
+[
+{
+  "title": "기생충",
+  "release_date": "2019-05-30",
+  "director": "봉준호",
+  "genre": "Drama",
+  "poster_url": "https://image.tmdb.org/t/p/original/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+},
+
+{
+  "title": "The Godfather",
+  "release_date": "1972-03-15",
+  "director": "Francis Ford Coppola",
+  "genre": "Gangster",
+  "poster_url": "https://www.vintagemovieposters.co.uk/wp-content/uploads/2023/12/IMG_7187-scaled.jpeg"
+},
+
+{
+  "title": " Pulp Fiction",
+  "release_date": "1994-10-14",
+  "director": "Quentin Tarantino",
+  "genre": "Crime",
+  "poster_url": "https://m.media-amazon.com/images/I/71fB68H1y+L._AC_SY300_SX300_QL70_FMwebp_.jpg"
+},
+
+{
+  "title": "Schindler's List",
+  "release_date": "1993-11-30",
+  "director": "Steven Spielberg",
+  "genre": "Drama",
+  "poster_url": "https://m.media-amazon.com/images/I/71vKAOMv8nL._AC_SL1345_.jpg"
+},
+
+{
+  "title": "The Lord of the Rings: The Return of the King",
+  "release_date": "2003-12-17",
+  "director": "Peter Jackson",
+  "genre": "Fantasy",
+  "poster_url": "https://m.media-amazon.com/images/I/71Xle4-8u+L._AC_SL1000_.jpg"
+},
+
+{
+  "title": "The Silence of the Lambs",
+  "release_date": "1991-02-14",
+  "director": "Jonathan Demme",
+  "genre": "Thriller",
+  "poster_url": "https://m.media-amazon.com/images/I/81SVDO6WcrL._AC_SL1500_.jpg"
+},
+
+{
+  "title": "12 Angry Men",
+  "release_date": "1957-04-10",
+  "director": "Sidney Lumet",
+  "genre": "Drama",
+  "poster_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/12_Angry_Men_%281957_film_poster%29.jpg"
+},
+
+{
+  "title": "Rental Family",
+  "release_date": "2025-11-21",
+  "director": "HIKARI",
+  "genre": "Comedy",
+  "poster_url": "https://s3.amazonaws.com/nightjarprod/content/uploads/sites/192/2025/09/02160435/6b4fm9k37m-scaled.jpeg"
+},
+
+{
+  "title": "The Dark Knight",
+  "release_date": "2008-07-14",
+  "director": "Christopher Nolan",
+  "genre": "Thriller",
+  "poster_url": "https://image.tmdb.org/t/p/original/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"
+}
+]
