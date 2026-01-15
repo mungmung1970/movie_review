@@ -14,38 +14,20 @@ def create_review(
     review: ReviewCreate,
     db: Session = Depends(get_db),
 ):
-    # 1️⃣ 감성 분석 (예외 안전)
-    try:
-        sentiment = analyze_sentiment(review.content)
-    except Exception:
-        sentiment = {"score": 3, "source": "rule-based"}
+    sentiment = analyze_sentiment(review.content)
 
-    # 2️⃣ ⭐ DB CHECK 제약을 통과하도록 값 보정 (핵심)
-    score = sentiment.get("score", 3)
-    source = sentiment.get("source", "rule-based")
-
-    score = max(1, min(5, int(score)))
-    if source not in ("huggingface", "rule-based"):
-        source = "rule-based"
-
-    # 3️⃣ DB INSERT
+    # ✅ 그대로 사용
     db_review = Review(
         movie_id=review.movie_id,
         author=review.author,
         content=review.content,
-        sentiment_score=score,
-        sentiment_source=source,
+        sentiment_score=sentiment["score"],
+        sentiment_source=sentiment["source"],  # ← 여기 중요
     )
 
-    # 4️⃣ commit 실패 대비 rollback
-    try:
-        db.add(db_review)
-        db.commit()
-        db.refresh(db_review)
-    except Exception:
-        db.rollback()
-        raise
-
+    db.add(db_review)
+    db.commit()
+    db.refresh(db_review)
     return db_review
 
 

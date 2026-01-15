@@ -1,66 +1,73 @@
-import requests
-from app.core.config import settings
+import os
+import json
+from openai import OpenAI
+
+print("🔧 sentiment_service.py LOADED")
+print("🔧 OPENAI_API_KEY exists =", bool(os.getenv("OPENAI_API_KEY")))
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-# =========================
-# Rule-based fallback
-# =========================
-def rule_based_sentiment(text: str) -> int:
-    """
-    매우 단순한 규칙 기반 감성 분석
-    1~5 점수 반환 (중립=3)
-    """
-    positive_keywords = ["좋다", "재밌", "훌륭", "최고", "감동"]
-    negative_keywords = ["별로", "지루", "최악", "실망", "나쁘"]
-
-    score = 3  # 기본 중립
-
-    for word in positive_keywords:
-        if word in text:
-            score += 1
-
-    for word in negative_keywords:
-        if word in text:
-            score -= 1
-
-    # DB CHECK 제약 보호
-    return max(1, min(5, score))
-
-
-# =========================
-# Main sentiment function
-# =========================
 def analyze_sentiment(text: str) -> dict:
-    """
-    HuggingFace → 실패 시 rule-based fallback
-    """
-    if settings.HF_API_KEY and settings.HF_MODEL_ID:
-        try:
-            response = requests.post(
-                f"https://api-inference.huggingface.co/models/{settings.HF_MODEL_ID}",
-                headers={
-                    "Authorization": f"Bearer {settings.HF_API_KEY}",
-                    "Content-Type": "application/json",
+    print("\n🚀 analyze_sentiment CALLED")
+    print("📝 INPUT TEXT =", text)
+
+    try:
+        print("🤖 OPENAI REQUEST START")
+        print("🤖 MODEL = gpt-4.1-mini")
+
+        response = client.responses.create(
+            model="gpt-4.1-mini",
+            input=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a sentiment analysis engine. "
+                        "Return a sentiment score from 1 to 5 as an integer. "
+                        "1 = very negative, 5 = very positive. "
+                        "Respond ONLY with a JSON object like: "
+                        '{"score": 3}'
+                    ),
                 },
-                json={"inputs": text},
-                timeout=10,
-            )
-            response.raise_for_status()
+                {
+                    "role": "user",
+                    "content": text,
+                },
+            ],
+        )
 
-            result = response.json()
-            label = result[0]["label"]
-            score = result[0]["score"]
+        print("🤖 OPENAI RESPONSE OBJECT =", response)
 
-            return {
-                "score": 5 if label == "POSITIVE" else 1,
-                "source": "huggingface",
-            }
+        # output_text 안전 접근
+        output_text = getattr(response, "output_text", None)
+        print("🤖 output_text =", output_text)
 
-        except Exception:
-            pass  # fallback으로 내려감
+        if not output_text:
+            raise ValueError("No output_text in OpenAI response")
 
-    # ⭐ 여기서 rule-based 사용
-    return {
-        "score": rule_based_sentiment(text),
-        "source": "rule-based",
-    }
+        content = output_text.strip()
+        print("📦 PARSED TEXT =", content)
+
+        # JSON 파싱 (eval 대신 json.loads 권장)
+        data = json.loads(content)
+        print("📦 JSON DATA =", data)
+
+        score = int(data.get("score", 3))
+        score = max(1, min(5, score))
+
+        print("✅ FINAL SCORE =", score)
+
+        return {
+            "score": score,
+            "source": "openai",
+        }
+
+    except Exception as e:
+        print("🔥 OpenAI ERROR OCCURRED")
+        print("🔥 ERROR TYPE =", type(e))
+        print("🔥 ERROR DETAIL =", repr(e))
+
+        return {
+            "score": 3,
+            "source": "rule-based",
+        }
