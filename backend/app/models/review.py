@@ -16,7 +16,7 @@ from app.core.database import Base
 
 
 class Review(Base):
-    __tablename__ = "review"  # Supabase 테이블명과 반드시 일치
+    __tablename__ = "reviews"  # Supabase 테이블명과 반드시 일치
 
     id: Mapped[int] = mapped_column(
         Integer,
@@ -27,7 +27,7 @@ class Review(Base):
 
     movie_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey("movie.id"),
+        ForeignKey("movies.id"),
         nullable=False,
         index=True,
         comment="영화 ID",

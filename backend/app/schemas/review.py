@@ -4,6 +4,10 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
 
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
+from sqlalchemy.sql import func
+from app.core.database import Base
+
 
 class ReviewBase(BaseModel):
     movie_id: int
@@ -29,3 +33,6 @@ class ReviewResponse(BaseModel):
 
     # ⭐⭐⭐ Pydantic v2 핵심
     model_config = {"from_attributes": True}
+
+
+
