@@ -1,0 +1,38 @@
+.movie-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  width: 180px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.movie-card.selected {
+  border: 2px solid var(--gold);
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+}
+
+.movie-poster {
+  width: 140px;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.movie-title {
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.movie-meta {
+  font-size: 13px;
+  color: var(--text-sub);
+  text-align: center;
+}

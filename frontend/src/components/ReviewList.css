@@ -1,0 +1,29 @@
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.review-card {
+  background: var(--bg-card-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.review-author {
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.review-content {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.review-score {
+  font-size: 13px;
+  color: var(--text-sub);
+}

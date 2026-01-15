@@ -1,0 +1,15 @@
+.movie-carousel {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.movie-carousel::-webkit-scrollbar {
+  height: 6px;
+}
+
+.movie-carousel::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
