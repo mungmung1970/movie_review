@@ -6,13 +6,14 @@
 // 책임: 영화 리스트만 (리뷰/감성분석 ❌)
 //==============================================
 
-// src/pages/Home.tsx
 import { useEffect, useState } from "react";
 import { getMovies, deleteMovie } from "../api/movieApi";
 import { getReviewsByMovie } from "../api/reviewApi";
+
 import type { Movie } from "../types/movie";
 import type { Review } from "../types/review";
-import MovieGrid from "../components/MovieGrid";
+
+import MovieCarousel from "../components/MovieCarousel";
 import ReviewList from "../components/ReviewList";
 import ReviewForm from "../components/ReviewForm";
 
@@ -37,7 +38,7 @@ export default function Home() {
     <div>
       <h2>🎬 영화 목록</h2>
 
-      <MovieGrid
+      <MovieCarousel
         movies={movies}
         selectedId={selected?.id ?? null}
         onSelect={(m) => {
@@ -54,7 +55,9 @@ export default function Home() {
         <>
           <hr />
           <h2>🎥 {selected.title}</h2>
+
           <ReviewList reviews={reviews} />
+
           <ReviewForm
             movieId={selected.id}
             onCreated={() => loadReviews(selected.id)}
