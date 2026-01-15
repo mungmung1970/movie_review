@@ -1,8 +1,8 @@
 ```
 1️⃣ 전체 아키텍처 (확정)
-React (Vercel)
+React (Vercel) https://movie-review-seven-xi.vercel.app/
    ↓ REST API (JSON)
-FastAPI (Render)
+FastAPI (Render) - https://movie-review-wyt0.onrender.com/, https://movie-review-wyt0.onrender.com/docs
    ↓
 Supabase (Postgres + Auth)
 
