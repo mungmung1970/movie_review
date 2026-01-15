@@ -1,6 +1,6 @@
 ```
 1️⃣ 전체 아키텍처 (확정)
-React (Vercel) https://movie-review-seven-xi.vercel.app/
+React (Vercel) https://movie-review-ilm1.vercel.app/
    ↓ REST API (JSON)
 FastAPI (Render) - https://movie-review-wyt0.onrender.com/, https://movie-review-wyt0.onrender.com/docs
    ↓

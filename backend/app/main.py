@@ -1,5 +1,3 @@
-# backend/app/main.py
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
@@ -9,8 +7,8 @@ app = FastAPI(title=settings.APP_NAME)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,  # ⭐ 핵심
-    allow_credentials=False,  # ⭐ 프리플라이트 400 방지
+    allow_origins=settings.CORS_ORIGINS,  # ⭐ list 타입이어야 함
+    allow_credentials=False,  # ⭐ True면 preflight 깨짐
     allow_methods=["*"],
     allow_headers=["*"],
 )
