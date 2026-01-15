@@ -2,32 +2,54 @@ import type { Movie } from "../types/movie";
 
 interface Props {
   movie: Movie;
-  onClick?: () => void;
+  selected: boolean;
+  onClick: () => void;
+  onDelete: () => void;
 }
 
-export default function MovieCard({ movie, onClick }: Props) {
+export default function MovieCard({
+  movie,
+  selected,
+  onClick,
+  onDelete,
+}: Props) {
   return (
     <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "12px",
-        marginBottom: "12px",
-        cursor: onClick ? "pointer" : "default",
-      }}
       onClick={onClick}
+      style={{
+        border: selected ? "2px solid #4f46e5" : "1px solid #ccc",
+        padding: 12,
+        cursor: "pointer",
+        position: "relative",
+      }}
     >
-      <h3>{movie.title}</h3>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
+        }}
+        style={{
+          position: "absolute",
+          top: 6,
+          right: 6,
+          fontSize: 12,
+        }}
+      >
+        ❌
+      </button>
+
+      <h4>{movie.title}</h4>
 
       {movie.poster_url && (
         <img
           src={movie.poster_url}
           alt={movie.title}
-          width={120}
+          style={{ width: "100%" }}
         />
       )}
 
-      <p>감독: {movie.director ?? "-"}</p>
-      <p>장르: {movie.genre ?? "-"}</p>
+      <p>감독: {movie.director}</p>
+      <p>장르: {movie.genre}</p>
     </div>
   );
 }

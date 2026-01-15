@@ -7,39 +7,60 @@
 //==============================================
 
 // src/pages/Home.tsx
-
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { getMovies } from "../api/movieApi";
+import { getMovies, deleteMovie } from "../api/movieApi";
+import { getReviewsByMovie } from "../api/reviewApi";
 import type { Movie } from "../types/movie";
-import MovieCard from "../components/MovieCard";
+import type { Review } from "../types/review";
+import MovieGrid from "../components/MovieGrid";
+import ReviewList from "../components/ReviewList";
+import ReviewForm from "../components/ReviewForm";
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const navigate = useNavigate();
+  const [selected, setSelected] = useState<Movie | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  const loadMovies = async () => {
+    setMovies(await getMovies());
+  };
+
+  const loadReviews = async (movieId: number) => {
+    setReviews(await getReviewsByMovie(movieId));
+  };
 
   useEffect(() => {
-    getMovies().then(setMovies);
+    loadMovies();
   }, []);
 
   return (
     <div>
       <h2>🎬 영화 목록</h2>
 
-      {movies.length === 0 && <p>등록된 영화가 없습니다.</p>}
+      <MovieGrid
+        movies={movies}
+        selectedId={selected?.id ?? null}
+        onSelect={(m) => {
+          setSelected(m);
+          loadReviews(m.id);
+        }}
+        onDelete={async (id) => {
+          await deleteMovie(id);
+          loadMovies();
+        }}
+      />
 
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onClick={() => navigate(`/movies/${movie.id}`)}
-        />
-      ))}
-
-      <button onClick={() => navigate("/add")}>
-        ➕ 영화 등록
-      </button>
+      {selected && (
+        <>
+          <hr />
+          <h2>🎥 {selected.title}</h2>
+          <ReviewList reviews={reviews} />
+          <ReviewForm
+            movieId={selected.id}
+            onCreated={() => loadReviews(selected.id)}
+          />
+        </>
+      )}
     </div>
   );
 }
