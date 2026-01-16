@@ -1,11 +1,10 @@
 import type { Movie } from "../types/movie";
-import "./MovieCard.css";
 
 interface Props {
   movie: Movie;
   selected: boolean;
   onClick: () => void;
-  onDelete?: () => void; // ⭐ 추가
+  onDelete?: () => void;
 }
 
 export default function MovieCard({
@@ -16,42 +15,57 @@ export default function MovieCard({
 }: Props) {
   return (
     <div
-      className={`movie-card ${selected ? "selected" : ""}`}
       onClick={onClick}
+      style={{
+        border: selected ? "2px solid #c9a24d" : "1px solid #ddd",
+        borderRadius: 10,
+        padding: 10,
+        background: "#f5f5f5",
+        cursor: "pointer",
+        position: "relative",
+      }}
     >
-      {movie.poster_url && (
+      {movie.poster_url ? (
         <img
           src={movie.poster_url}
           alt={movie.title}
-          className="movie-poster"
+          style={{
+            width: "100%",
+            height: 160,
+            objectFit: "cover",
+            borderRadius: 8,
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            height: 160,
+            background: "#ddd",
+            borderRadius: 8,
+          }}
         />
       )}
 
-      <div className="movie-title">{movie.title}</div>
-      <div className="movie-meta">감독: {movie.director}</div>
-      <div className="movie-meta">장르: {movie.genre}</div>
+      <h4 style={{ marginTop: 8, fontSize: 14 }}>{movie.title}</h4>
 
-      {/* ⭐ 여기! 삭제 버튼 */}
       {onDelete && (
         <button
-          className="movie-delete-btn"
           onClick={(e) => {
-            e.stopPropagation(); // 카드 클릭 방지
+            e.stopPropagation();
             onDelete();
           }}
+          style={{
+            position: "absolute",
+            top: 6,
+            right: 6,
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+          }}
         >
-          🗑 삭제
+          🗑
         </button>
       )}
-    </div>
-  );
-}
-
-
-export default function MovieCarousel({ children }) {
-  return (
-    <div className="movie-carousel">
-      {children}
     </div>
   );
 }

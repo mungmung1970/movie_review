@@ -1,34 +1,40 @@
-import "./ReviewList.css";
 import type { Review } from "../types/review";
 
-export default function ReviewList({ reviews }: { reviews: Review[] }) {
-  return (
-    <div className="review-grid">
-      {reviews.map((r) => (
-        <div key={r.id} className="review-card">
-          <div className="review-author">{r.author}</div>
-          <div className="review-content">{r.content}</div>
-          <div className="review-score">
-            ⭐ {r.sentiment_score} ({r.sentiment_source})
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+interface Props {
+  reviews: Review[];
 }
 
-export default function ReviewList({ reviews }) {
-  if (!reviews.length) {
-    return <p style={{ color: "#999" }}>아직 리뷰가 없습니다.</p>;
+export default function ReviewList({ reviews }: Props) {
+  if (reviews.length === 0) {
+    return (
+      <div style={{ color: "#888", marginTop: 20 }}>
+        아직 리뷰가 없습니다.
+      </div>
+    );
   }
 
   return (
-    <div className="review-grid">
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+        gap: 16,
+        marginTop: 20,
+      }}
+    >
       {reviews.map((r) => (
-        <div key={r.id} className="review-card">
-          <p>{r.content}</p>
+        <div
+          key={r.id}
+          style={{
+            background: "#f4f4f4",
+            padding: 16,
+            borderRadius: 12,
+          }}
+        >
+          <strong>{r.author}</strong>
+          <p style={{ margin: "8px 0" }}>{r.content}</p>
           <small>
-            {r.sentiment_score}점 · {r.sentiment_source}
+            점수: {r.sentiment_score} / {r.sentiment_source}
           </small>
         </div>
       ))}
