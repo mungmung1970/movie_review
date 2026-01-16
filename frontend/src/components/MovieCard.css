@@ -9,7 +9,7 @@
   height: 320px;                /* ⭐ 카드 높이 고정 */
   box-sizing: border-box;
 
-  background: #1c1c1c;
+  background: linear-gradient(180deg, #1e1e1e, #161616);
   border-radius: 14px;
   padding: 10px;
 
@@ -21,6 +21,8 @@
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65);
 }
+
+
 
 .movie-card:hover {
   transform: translateY(-4px);
@@ -130,3 +132,4 @@
   background: #c0392b;
   opacity: 1;
 }
+

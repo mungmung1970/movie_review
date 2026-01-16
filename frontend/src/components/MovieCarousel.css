@@ -2,15 +2,17 @@
    Swiper Carousel Fix
    =============================== */
 
-/* Swiper 기본 높이 안정화 */
+/* Swiper 전체 영역 */
 .swiper {
-  padding-bottom: 16px;
+  width: 100%;
+  padding: 16px 0;
 }
 
-/* ⭐ 슬라이드 내부를 flex로 만들어 카드 높이 통일 */
+
+/* 슬라이드 겹침 방지 */
 .swiper-slide {
+  height: auto;
   display: flex;
-  align-items: stretch;
   justify-content: center;
 }
 
@@ -33,3 +35,10 @@
     display: none;
   }
 }
+
+/* Swiper 배경 제거 */
+.swiper-wrapper {
+  background: transparent;
+}
+
+
