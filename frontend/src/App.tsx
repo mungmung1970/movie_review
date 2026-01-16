@@ -3,6 +3,8 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import AddMovie from "./pages/AddMovie";
+import "./styles/responsive.css";
+
 
 export default function App() {
   return (

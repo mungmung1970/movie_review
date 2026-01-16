@@ -46,3 +46,12 @@ export default function MovieCarousel({
     </Swiper>
   );
 }
+
+
+export default function MovieCarousel({ children }) {
+  return (
+    <div className="movie-carousel">
+      {children}
+    </div>
+  );
+}
