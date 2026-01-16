@@ -1,4 +1,5 @@
 import type { Movie } from "../types/movie";
+import "./MovieCard.css";
 
 interface Props {
   movie: Movie;
@@ -15,52 +16,25 @@ export default function MovieCard({
 }: Props) {
   return (
     <div
+      className={`movie-card ${selected ? "selected" : ""}`}
       onClick={onClick}
-      style={{
-        border: selected ? "2px solid #c9a24d" : "1px solid #ddd",
-        borderRadius: 10,
-        padding: 10,
-        background: "#f5f5f5",
-        cursor: "pointer",
-        position: "relative",
-      }}
     >
-      {movie.poster_url ? (
-        <img
-          src={movie.poster_url}
-          alt={movie.title}
-          style={{
-            width: "100%",
-            height: 160,
-            objectFit: "cover",
-            borderRadius: 8,
-          }}
-        />
-      ) : (
-        <div
-          style={{
-            height: 160,
-            background: "#ddd",
-            borderRadius: 8,
-          }}
-        />
-      )}
+      <div className="poster-wrapper">
+        {movie.poster_url ? (
+          <img src={movie.poster_url} alt={movie.title} />
+        ) : (
+          <div className="poster-placeholder" />
+        )}
+      </div>
 
-      <h4 style={{ marginTop: 8, fontSize: 14 }}>{movie.title}</h4>
+      <h4 className="movie-title">{movie.title}</h4>
 
       {onDelete && (
         <button
+          className="delete-btn"
           onClick={(e) => {
             e.stopPropagation();
             onDelete();
-          }}
-          style={{
-            position: "absolute",
-            top: 6,
-            right: 6,
-            border: "none",
-            background: "transparent",
-            cursor: "pointer",
           }}
         >
           🗑

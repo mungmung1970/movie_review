@@ -6,24 +6,12 @@
 }
 
 .review-card {
-  background: var(--bg-card-light);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.review-author {
-  font-weight: 600;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-
-.review-content {
-  font-size: 14px;
-  margin-bottom: 8px;
+  background: var(--bg-soft);
+  padding: 16px;
+  border-radius: 12px;
 }
 
 .review-score {
+  color: var(--gold);
   font-size: 13px;
-  color: var(--text-sub);
 }

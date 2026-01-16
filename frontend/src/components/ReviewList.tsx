@@ -14,7 +14,7 @@ export default function ReviewList({ reviews }: Props) {
   }
 
   return (
-    <div
+    <div className="review-grid"
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",

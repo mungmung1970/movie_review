@@ -1,38 +1,45 @@
-.movie-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px;
-  width: 180px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+import type { Movie } from "../types/movie";
+import "./MovieCard.css";
+
+interface Props {
+  movie: Movie;
+  selected: boolean;
+  onClick: () => void;
+  onDelete?: () => void;
 }
 
-.movie-card.selected {
-  border: 2px solid var(--gold);
-}
+export default function MovieCard({
+  movie,
+  selected,
+  onClick,
+  onDelete,
+}: Props) {
+  return (
+    <div
+      className={`movie-card ${selected ? "selected" : ""}`}
+      onClick={onClick}
+    >
+      <div className="poster-wrapper">
+        {movie.poster_url ? (
+          <img src={movie.poster_url} alt={movie.title} />
+        ) : (
+          <div className="poster-placeholder" />
+        )}
+      </div>
 
-.movie-card:hover {
-  transform: translateY(-4px);
-}
+      <h4 className="movie-title">{movie.title}</h4>
 
-.movie-poster {
-  width: 140px;
-  height: auto;
-  border-radius: 6px;
-  display: block;
-  margin: 0 auto 10px;
-}
-
-.movie-title {
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.movie-meta {
-  font-size: 13px;
-  color: var(--text-sub);
-  text-align: center;
+      {onDelete && (
+        <button
+          className="delete-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }}
+        >
+          🗑
+        </button>
+      )}
+    </div>
+  );
 }

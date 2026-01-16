@@ -24,17 +24,10 @@ export default function MovieCarousel({
       modules={[Navigation]}
       navigation
       spaceBetween={16}
-      slidesPerView={10}
+      slidesPerView={10}     // ← 한 화면에 최대 10개
       slidesPerGroup={10}
-      breakpoints={{
-        320: { slidesPerView: 1 },
-        480: { slidesPerView: 2 },
-        640: { slidesPerView: 3 },
-        768: { slidesPerView: 4 },
-        1024: { slidesPerView: 6 },
-        1280: { slidesPerView: 10 },
-      }}
-    >
+      style={{ paddingBottom: 12 }}
+    >      
       {movies.map((m) => (
         <SwiperSlide key={m.id}>
           <MovieCard

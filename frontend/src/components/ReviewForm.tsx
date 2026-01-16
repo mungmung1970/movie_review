@@ -21,7 +21,8 @@ export default function ReviewForm({
   };
 
   return (
-    <div className="form-card">
+
+    <div className="review-form">
       <h4>✍ 리뷰 작성</h4>
 
       <input
