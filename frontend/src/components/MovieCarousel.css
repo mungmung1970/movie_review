@@ -1,15 +1,35 @@
-.movie-carousel {
+/* ===============================
+   Swiper Carousel Fix
+   =============================== */
+
+/* Swiper 기본 높이 안정화 */
+.swiper {
+  padding-bottom: 16px;
+}
+
+/* ⭐ 슬라이드 내부를 flex로 만들어 카드 높이 통일 */
+.swiper-slide {
   display: flex;
-  gap: 16px;
-  padding: 20px;
-  overflow-x: auto;
+  align-items: stretch;
+  justify-content: center;
 }
 
-.movie-carousel::-webkit-scrollbar {
-  height: 6px;
+/* 네비게이션 버튼 다크 톤 */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #c9a24d;
+  opacity: 0.85;
 }
 
-.movie-carousel::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 4px;
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  opacity: 1;
+}
+
+/* 모바일에서 버튼 숨김 (선택) */
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
 }
