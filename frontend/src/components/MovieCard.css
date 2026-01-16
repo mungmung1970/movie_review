@@ -1,35 +1,33 @@
+/* 카드 전체 */
 .movie-card {
-  width: 100%;
-  height: 320px; /* ⭐ 카드 높이 고정 */
-  background: #1e1e1e;
-  border-radius: 14px;
-  padding: 12px;
-  box-sizing: border-box;
-  cursor: pointer;
   position: relative;
-
+  height: 320px;                /* ⭐ 핵심: 카드 높이 고정 */
+  background: #1c1c1c;
+  border-radius: 14px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
-  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
 }
 
 .movie-card:hover {
   transform: translateY(-4px);
 }
 
+/* 선택된 카드 */
 .movie-card.selected {
   border: 2px solid #c9a24d;
-  box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.4);
 }
 
-/* 포스터 영역 고정 */
+/* 포스터 영역 */
 .poster-wrapper {
-  height: 180px;
+  height: 180px;                /* ⭐ 캐러셀 높이 균일화 핵심 */
   border-radius: 10px;
   overflow: hidden;
   background: #333;
+  margin-bottom: 10px;
 }
 
 .poster-wrapper img {
@@ -38,7 +36,7 @@
   object-fit: cover;
 }
 
-/* 포스터 없는 경우 */
+/* 포스터 없을 때 */
 .poster-empty {
   height: 100%;
   display: flex;
@@ -48,15 +46,17 @@
   font-size: 12px;
 }
 
-/* 텍스트 영역 */
+/* 영화 정보 */
 .movie-info {
-  margin-top: 8px;
+  flex: 1;
+  color: #ddd;
 }
 
 .movie-info h4 {
   font-size: 14px;
-  margin: 0;
-  color: #f5f5f5;
+  margin: 4px 0;
+  color: #f1f1f1;
+  line-height: 1.2;
 }
 
 .movie-info p {
@@ -70,8 +70,16 @@
   position: absolute;
   top: 8px;
   right: 8px;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.6);
   border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
-  color: #ccc;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
 }

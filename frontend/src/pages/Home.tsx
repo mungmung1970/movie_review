@@ -69,7 +69,7 @@ export default function Home() {
             />
           </>
         ) : (
-          <p style={{ color: "#888", textAlign: "center" }}>
+          <p className="review-placeholder">
             영화를 선택해주세요
           </p>
         )}

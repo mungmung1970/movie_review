@@ -1,34 +1,33 @@
-/* ================= 전체 페이지 ================= */
+/* 전체 페이지 레이아웃 */
 .page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 24px;
-  background: linear-gradient(#121212, #0f0f0f);
-  color: #eee;
-  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 32px;
 }
 
-/* ================= 영화 영역 ================= */
+/* 영화 영역 */
 .movie-section {
-  margin-bottom: 32px;
+  background: #151515;
+  padding: 24px;
+  border-radius: 16px;
 }
 
-/* Swiper 전체 높이 고정 */
-.movie-section .swiper {
-  padding-bottom: 24px;
-}
-
-/* Swiper 슬라이드 높이 강제 */
-.movie-section .swiper-slide {
-  height: 340px;
-  display: flex;
-  justify-content: center;
-}
-
-/* ================= 리뷰 영역 ================= */
+/* 리뷰 영역 */
 .review-section {
-  background: linear-gradient(#1b1b1b, #151515);
-  padding: 32px;
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(180deg, #1b1b1b, #111);
+  padding: 24px;
+  border-radius: 16px;
+  min-height: 360px;
+}
+
+/* 리뷰 영역 제목 */
+.review-section h2 {
+  margin-bottom: 16px;
+}
+
+/* 영화 미선택 상태 */
+.review-placeholder {
+  text-align: center;
+  color: #777;
+  margin-top: 80px;
 }
