@@ -1,43 +1,38 @@
-import { useState } from "react";
-import { createReview } from "../api/reviewApi";
-import "../styles/form.css";
+/* ================= 입력 요소 다크 테마 ================= */
+input,
+textarea {
+  width: 100%;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #eee;
+  font-size: 14px;
+  outline: none;
+}
 
-export default function ReviewForm({
-  movieId,
-  onCreated,
-}: {
-  movieId: number;
-  onCreated: () => void;
-}) {
-  const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("");
+input::placeholder,
+textarea::placeholder {
+  color: #777;
+}
 
-  const submit = async () => {
-    if (!author || !content) return;
-    await createReview({ movie_id: movieId, author, content });
-    setContent("");
-    setAuthor("");
-    onCreated();
-  };
+input:focus,
+textarea:focus {
+  border-color: #c9a24d;
+  box-shadow: 0 0 0 1px rgba(201, 162, 77, 0.4);
+}
 
-  return (
+/* ================= 버튼 ================= */
+button {
+  background: linear-gradient(135deg, #c9a24d, #a8842f);
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    <div className="review-form">
-      <h4>✍ 리뷰 작성</h4>
-
-      <input
-        placeholder="작성자"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
-
-      <textarea
-        placeholder="리뷰 내용"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-
-      <button onClick={submit}>등록</button>
-    </div>
-  );
+button:hover {
+  opacity: 0.9;
 }

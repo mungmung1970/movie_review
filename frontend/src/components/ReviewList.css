@@ -6,15 +6,15 @@
 }
 
 .review-card {
-  background: #222;
+  background: #202020;
   border-radius: 14px;
   padding: 16px;
   color: #ddd;
 }
 
 .review-card h4 {
-  margin: 0 0 8px;
-  color: #f0f0f0;
+  margin-bottom: 8px;
+  color: #f5f5f5;
 }
 
 .review-card p {
