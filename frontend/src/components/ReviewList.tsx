@@ -14,30 +14,16 @@ export default function ReviewList({ reviews }: Props) {
   }
 
   return (
-    <div className="review-grid"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-        gap: 16,
-        marginTop: 20,
-      }}
-    >
+    <div className="review-grid">
       {reviews.map((r) => (
-        <div
-          key={r.id}
-          style={{
-            background: "#f4f4f4",
-            padding: 16,
-            borderRadius: 12,
-          }}
-        >
-          <strong>{r.author}</strong>
-          <p style={{ margin: "8px 0" }}>{r.content}</p>
+        <div className="review-card" key={r.id}>
+          <h4>{r.author}</h4>
+          <p>{r.content}</p>
           <small>
             점수: {r.sentiment_score} / {r.sentiment_source}
           </small>
         </div>
       ))}
-    </div>
+    </div>    
   );
 }

@@ -23,11 +23,15 @@ export default function MovieCard({
         {movie.poster_url ? (
           <img src={movie.poster_url} alt={movie.title} />
         ) : (
-          <div className="poster-placeholder" />
+          <div className="poster-empty">NO IMAGE</div>
         )}
       </div>
 
-      <h4 className="movie-title">{movie.title}</h4>
+      <div className="movie-info">
+        <h4>{movie.title}</h4>
+        <p>감독: {movie.director}</p>
+        <p>장르: {movie.genre}</p>
+      </div>
 
       {onDelete && (
         <button

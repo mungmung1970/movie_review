@@ -1,45 +1,77 @@
-import type { Movie } from "../types/movie";
-import "./MovieCard.css";
+.movie-card {
+  width: 100%;
+  height: 320px; /* ⭐ 카드 높이 고정 */
+  background: #1e1e1e;
+  border-radius: 14px;
+  padding: 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
 
-interface Props {
-  movie: Movie;
-  selected: boolean;
-  onClick: () => void;
-  onDelete?: () => void;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-export default function MovieCard({
-  movie,
-  selected,
-  onClick,
-  onDelete,
-}: Props) {
-  return (
-    <div
-      className={`movie-card ${selected ? "selected" : ""}`}
-      onClick={onClick}
-    >
-      <div className="poster-wrapper">
-        {movie.poster_url ? (
-          <img src={movie.poster_url} alt={movie.title} />
-        ) : (
-          <div className="poster-placeholder" />
-        )}
-      </div>
+.movie-card:hover {
+  transform: translateY(-4px);
+}
 
-      <h4 className="movie-title">{movie.title}</h4>
+.movie-card.selected {
+  border: 2px solid #c9a24d;
+  box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.4);
+}
 
-      {onDelete && (
-        <button
-          className="delete-btn"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-        >
-          🗑
-        </button>
-      )}
-    </div>
-  );
+/* 포스터 영역 고정 */
+.poster-wrapper {
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #333;
+}
+
+.poster-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 포스터 없는 경우 */
+.poster-empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 12px;
+}
+
+/* 텍스트 영역 */
+.movie-info {
+  margin-top: 8px;
+}
+
+.movie-info h4 {
+  font-size: 14px;
+  margin: 0;
+  color: #f5f5f5;
+}
+
+.movie-info p {
+  font-size: 12px;
+  margin: 2px 0;
+  color: #aaa;
+}
+
+/* 삭제 버튼 */
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
 }

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import "./Home.css";
+
+import { useEffect, useState } from "react";
 
 import MovieCarousel from "../components/MovieCarousel";
 import ReviewList from "../components/ReviewList";
