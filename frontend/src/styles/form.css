@@ -1,0 +1,46 @@
+.form-card {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #f4f4f4;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h3,
+.form-card h4 {
+  margin-bottom: 16px;
+  color: #5a4a1f; /* 골든 브라운 */
+  text-align: center;
+}
+
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+}
+
+.form-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-card button {
+  width: 100%;
+  padding: 12px;
+  background: #c9a24d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-card button:hover {
+  background: #b08c3c;
+}

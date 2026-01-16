@@ -24,13 +24,15 @@ export default function MovieCarousel({
       modules={[Navigation]}
       navigation
       spaceBetween={16}
-      slidesPerView={5}
-      slidesPerGroup={5}
+      slidesPerView={10}
+      slidesPerGroup={10}
       breakpoints={{
         320: { slidesPerView: 1 },
-        640: { slidesPerView: 2 },
-        768: { slidesPerView: 3 },
-        1024: { slidesPerView: 5 },
+        480: { slidesPerView: 2 },
+        640: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        1024: { slidesPerView: 6 },
+        1280: { slidesPerView: 10 },
       }}
     >
       {movies.map((m) => (
@@ -48,10 +50,3 @@ export default function MovieCarousel({
 }
 
 
-export default function MovieCarousel({ children }) {
-  return (
-    <div className="movie-carousel">
-      {children}
-    </div>
-  );
-}

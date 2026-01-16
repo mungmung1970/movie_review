@@ -66,3 +66,62 @@ body {
     width: 100%;
   }
 }
+
+
+/* =========================
+   Form Card (공통)
+========================= */
+.form-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 420px;
+  background: #eeeeea;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* input / textarea 공통 */
+.form-card input,
+.form-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f5f5f3;
+  font-size: 14px;
+}
+
+.form-card textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.form-card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: goldenrod;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-card button.secondary {
+  margin-top: 8px;
+  background: #999;
+}
