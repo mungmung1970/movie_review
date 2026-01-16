@@ -29,3 +29,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+body { background: red !important; }
