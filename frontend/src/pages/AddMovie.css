@@ -1,0 +1,73 @@
+/* 전체 배경 */
+.add-movie-page {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse at top,
+    #1f1f1f,
+    #0f0f0f 70%
+  );
+}
+
+/* 중앙 카드 */
+.add-movie-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 24px;
+  background: #1a1a1a;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  color: #f5f5f5;
+}
+
+/* 제목 */
+.add-movie-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #d4af37; /* 골드 */
+}
+
+/* 입력창 공통 */
+.add-movie-card input {
+  width: 100%;
+  box-sizing: border-box; /* ⭐ 넘침 방지 */
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #eee;
+  font-size: 14px;
+}
+
+.add-movie-card input::placeholder {
+  color: #777;
+}
+
+/* 포커스 */
+.add-movie-card input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4);
+}
+
+/* 등록 버튼 */
+.submit-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
